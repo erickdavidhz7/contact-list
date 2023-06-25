@@ -57,7 +57,9 @@ const borrarContacto = (contactoEliminar) =>{
 const imprimirListaContactos = ()=>{
     console.log("La lista de contactos\nTiene los siguientes contactos:");
     for (const contacto of listaContactos) {
-        console.log(contacto);
+        console.log(`-Contacto-\nID: ${contacto.id}\nNombre: ${contacto.nombre}\nApellido: ${contacto.apellido}\nTeléfono: ${contacto.telefono}\nCiudad: ${contacto.ubicacion.ciudad}\nDirección: ${contacto.ubicacion.direccion}`);
+        console.log('-------------------' );
+
     }
 }
 
