@@ -1,6 +1,6 @@
 // Definiendo la lista de contactos como un array con un contacto ingresado para cuestiones de testeo.
 const listaContactos = [{
-    id: 12345,
+    id: 1,
     nombre: "Erick",
     apellido: "Henríquez",
     telefono: 3016962090,
@@ -10,13 +10,30 @@ const listaContactos = [{
     }
 }];
 // Función para añadir un contacto a la lista de contactos.
-const añadirContacto = (nombreApellido) =>{
-    if (listaContactos.includes(nombreApellido)){
-        console.log(`El contacto "${nombreApellido}" ya se encuentra en la lista de contactos\nNo es necesario añadirlo otra vez.`);
-        return;
+const añadirContacto = (nombreApellido, telefonoIngresado, ciudadIngresado, direccionIngresado) =>{
+    let idContador = listaContactos.length + 1;
+    nombreApellido = nombreApellido.split(" ");
+    let nombreIngresado = nombreApellido[0];
+    let apellidoIngresado = nombreApellido[1];
+    for (const contacto of listaContactos) {
+        if(contacto.nombre == nombreIngresado && contacto.apellido == apellidoIngresado) {
+            console.log(`El contacto "${nombreIngresado} ${apellidoIngresado}" ya se encuentra en la lista de contactos.`);
+            return; // parar la función porque ya se ha encontrado el usuario.
+        }
     }
-    listaContactos.push(nombreApellido);
-    console.log(`El contacto "${nombreApellido}" se ha añadido a la lista de contactos.`);
+    // Se define un nuevo objeto contacto con los datos ingresados por el usuario como valores de los atributos.
+    const nuevoContacto = {
+        id: idContador,
+        nombre: nombreIngresado,
+        apellido: apellidoIngresado,
+        telefono: telefonoIngresado,
+        ubicacion:{
+            ciudad: ciudadIngresado,
+            direccion: direccionIngresado
+        }
+    }
+    // Se añade el objeto a la lista.
+    listaContactos.push(nuevoContacto);
 }
 // Functión para borrar contacto a la lista de contactos.
 const borrarContacto = (contactoEliminar) =>{
@@ -35,8 +52,16 @@ const imprimirListaContactos = ()=>{
         console.log(contacto);
     }
 }
+
+// Función para correr todo el testeo del programa
+function main(){
 // Llamando las respectivas funciones para testeo.
 imprimirListaContactos();
-añadirContacto("Andrew Apellido");
-borrarContacto("Erick Apellido");
+añadirContacto("Erick Chanel", 3016962010, "Barranquilla", "La 20 de Julio");
+añadirContacto("David Perez", 3016962015, "Soledad", "Exito del guazimo");
+añadirContacto("Lautaro Javier", 3016962016, "Bello", "La chinita");
+
 imprimirListaContactos();
+}
+
+main()
