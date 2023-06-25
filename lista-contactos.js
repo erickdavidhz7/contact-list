@@ -6,7 +6,7 @@ const listaContactos = [{
     telefono: 3016962090,
     ubicacion: {
         ciudad: "Medellín",
-        direccion: "Calle 33a #78a-72"
+        direccion: "por la 33a con 78a"
     }
 }];
 // Función para añadir un contacto a la lista de contactos.
@@ -15,6 +15,7 @@ const añadirContacto = (nombreApellido, telefonoIngresado, ciudadIngresado, dir
     nombreApellido = nombreApellido.split(" ");
     let nombreIngresado = nombreApellido[0];
     let apellidoIngresado = nombreApellido[1];
+
     for (const contacto of listaContactos) {
         if(contacto.nombre == nombreIngresado && contacto.apellido == apellidoIngresado) {
             console.log(`El contacto "${nombreIngresado} ${apellidoIngresado}" ya se encuentra en la lista de contactos.`);
@@ -34,16 +35,23 @@ const añadirContacto = (nombreApellido, telefonoIngresado, ciudadIngresado, dir
     }
     // Se añade el objeto a la lista.
     listaContactos.push(nuevoContacto);
+    console.log(`El contacto "${nombreIngresado} ${apellidoIngresado}" ha sido añadido a la lista de contactos.`);
 }
 // Functión para borrar contacto a la lista de contactos.
 const borrarContacto = (contactoEliminar) =>{
-    if(listaContactos.indexOf(contactoEliminar) == -1){
-        console.log(`No se ha encontrado el contacto "${contactoEliminar}" en la lista de contactos.\nPor favor ingrese un contacto presente en la lista.`);
-    }else{
-        const index = listaContactos.indexOf(contactoEliminar);
-        listaContactos.splice(index, 1);
-        console.log(`El contacto "${contactoEliminar}" ha sido eliminado de la lista de contactos.`);
+    contactoEliminar = contactoEliminar.split(" ");
+    let nombreIngresado = contactoEliminar[0];
+    let apellidoIngresado = contactoEliminar[1];
+
+    for (const contacto of listaContactos){
+        if(contacto.nombre == nombreIngresado && contacto.apellido == apellidoIngresado) {
+            const index = listaContactos.indexOf(contacto);
+            listaContactos.splice(index, 1);
+            console.log(`El contacto "${nombreIngresado} ${apellidoIngresado}" ha sido eliminado de la lista de contactos.`);
+            return;
+        }
     }
+    console.log(`No se ha encontrado el contacto "${nombreIngresado} ${apellidoIngresado}" en la lista de contactos, por favor ingrese un contacto presente en la lista.`);
 }
 // Función para imprimir lista de contactos.
 const imprimirListaContactos = ()=>{
@@ -55,13 +63,15 @@ const imprimirListaContactos = ()=>{
 
 // Función para correr todo el testeo del programa
 function main(){
-// Llamando las respectivas funciones para testeo.
-imprimirListaContactos();
-añadirContacto("Erick Chanel", 3016962010, "Barranquilla", "La 20 de Julio");
-añadirContacto("David Perez", 3016962015, "Soledad", "Exito del guazimo");
-añadirContacto("Lautaro Javier", 3016962016, "Bello", "La chinita");
-
-imprimirListaContactos();
+    // Llamando las respectivas funciones para testeo.
+    imprimirListaContactos();
+    añadirContacto("Yeison Chanel", "333-3015212", "Santo Tomas", "La 20 de Julio");
+    añadirContacto("Yeison Chanel", " 301-0515656", "Santo Tomas", "La 20 de Julio");
+    añadirContacto("David Perez", "333-3444559", "Soledad", "Exito del guazimo");
+    añadirContacto("Lautaro Javier", "330-0145755", "Bello", "La chinita");
+    borrarContacto("David Perez");
+    borrarContacto("Lautaro Martinez");
+    imprimirListaContactos();
 }
 
 main()
