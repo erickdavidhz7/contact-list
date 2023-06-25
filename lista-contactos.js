@@ -1,5 +1,14 @@
-// Definiendo la lista de contactos como un array con ya 3 contactos ingresados para cuestiones de testeo.
-const listaContactos = ["Erick Apellido", "Harry Apellido","Yeison Apellido"];
+// Definiendo la lista de contactos como un array con un contacto ingresado para cuestiones de testeo.
+const listaContactos = [{
+    id: 12345,
+    nombre: "Erick",
+    apellido: "Henríquez",
+    telefono: 3016962090,
+    ubicacion: {
+        ciudad: "Medellín",
+        direccion: "Calle 33a #78a-72"
+    }
+}];
 // Función para añadir un contacto a la lista de contactos.
 const añadirContacto = (nombreApellido) =>{
     if (listaContactos.includes(nombreApellido)){
