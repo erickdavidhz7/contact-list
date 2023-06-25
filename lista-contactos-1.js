@@ -1,5 +1,6 @@
+// Definiendo la lista de contactos como un array con ya 3 contactos ingresados para cuestiones de testeo.
 const listaContactos = ["Erick Apellido", "Harry Apellido","Yeison Apellido"];
-
+// Función para añadir un contacto a la lista de contactos.
 const añadirContacto = (nombreApellido) =>{
     if (listaContactos.includes(nombreApellido)){
         console.log(`El contacto "${nombreApellido}" ya se encuentra en la lista de contactos\nNo es necesario añadirlo otra vez.`);
@@ -8,7 +9,7 @@ const añadirContacto = (nombreApellido) =>{
     listaContactos.push(nombreApellido);
     console.log(`El contacto "${nombreApellido}" se ha añadido a la lista de contactos.`);
 }
-// Functión para borrar contacto
+// Functión para borrar contacto a la lista de contactos.
 const borrarContacto = (contactoEliminar) =>{
     if(listaContactos.indexOf(contactoEliminar) == -1){
         console.log(`No se ha encontrado el contacto "${contactoEliminar}" en la lista de contactos.\nPor favor ingrese un contacto presente en la lista.`);
