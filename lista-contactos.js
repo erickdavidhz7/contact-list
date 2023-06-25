@@ -61,27 +61,6 @@ const borrarContacto = (contactoEliminar) =>{
     }
     console.log(`No se ha encontrado el contacto "${nombreIngresado} ${apellidoIngresado}" en la lista de contactos.`);}
 
-// Función para actualizar un contacto.
-const actualizarContacto = (idIngresado, contactoActualizar, telefonoIngresado, ciudadIngresado, direccionIngresado) =>{
-    // Se separa el nombre y el apellido
-    contactoActualizar = contactoActualizar.split(" ");
-    let nombreIngresado = contactoActualizar[0];
-    let apellidoIngresado = contactoActualizar[1];
-    
-    for (const contacto of listaContactos){
-        if(contacto.id == idIngresado) {
-            contacto.nombre = nombreIngresado;
-            contacto.apellido = apellidoIngresado;
-            contacto.telefono = telefonoIngresado;
-            contacto.ubicacion.ciudad = ciudadIngresado;
-            contacto.ubicacion.direccion = direccionIngresado;
-            console.log(`Se ha actualizado los datos del contacto "${nombreIngresado} ${apellidoIngresado}" en la lista de contactos.`);
-            return; // parar la función porque ya se ha encontrado el contacto y se ha eliminado.
-        }
-    }
-    console.log(`No se ha encontrado el contacto "${nombreIngresado} ${apellidoIngresado}" en la lista de contactos.`);
-}
-
 // Función para imprimir lista de contactos.
 const imprimirListaContactos = ()=>{
     console.log("La lista de contactos\nTiene los siguientes contactos:");
@@ -107,10 +86,6 @@ function main(){
     borrarContacto("David Perez");
     // Cuando un contacto no existe en la lista y se intenta eliminar
     borrarContacto("Lautaro Martinez");
-    console.log('');
-    imprimirListaContactos();
-    console.log('');
-    actualizarContacto(123456, "Erick Henríquez", "301-6962090", "Medellín", "Calle 33a #78a-72");
     console.log('');
     imprimirListaContactos();
 }
