@@ -84,7 +84,7 @@ const actualizarContacto = (idIngresado, datoActualizar, respectivoDato) =>{
                     contacto.ubicacion.direccion = respectivoDato;
                     break;
                 default:
-                    console.log("El dato a actualizar no es valido, por favor ingrese uno de los siguientes:\n1. nombre\n2. apellido\n3. telefono\n4. ciudad\n5. dirección");
+                    console.log("El dato a actualizar no es valido, por favor ingrese uno de los siguientes:\n- nombre\n- apellido\n- telefono\n- ciudad\n- dirección");
                     return; // parar la función porque el dato a actualizar no es valido.
             }
             console.log(`Se ha actualizado los datos del contacto "${contacto.nombre} ${contacto.apellido}" en la lista de contactos.`);
@@ -123,9 +123,11 @@ function main(){
     console.log('');
     imprimirListaContactos();
     console.log('');
+    // Testeo multiples veces de actualizar contacto
     actualizarContacto(1, "telefono", "301-6962090")
     actualizarContacto(1, "dirección", "Calle 33a #78a-72")
     actualizarContacto(1, "ciudad", "Medellín")
+    actualizarContacto(1, "blabla", "bubu")
     console.log('');
     imprimirListaContactos();
 }
