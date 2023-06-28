@@ -14,8 +14,6 @@ const listaContactos = [{
 }];
 // Función para añadir un contacto a la lista de contactos.
 const añadirContacto = (nombreApellido, telefonoIngresado, ciudadIngresado, direccionIngresado) =>{
-    // Se le aumenta 1 al ID contador por que sa he ingresado un nuevo contacto.
-    idContador += 1;
     // Se separa el nombre y el apellido
     nombreApellido = nombreApellido.split(" ");
     let nombreIngresado = nombreApellido[0];
@@ -28,6 +26,9 @@ const añadirContacto = (nombreApellido, telefonoIngresado, ciudadIngresado, dir
             return; // parar la función porque ya se ha encontrado el contacto.
         }
     }
+    // Se le aumenta 1 al ID contador por que sa he ingresado un nuevo contacto.
+    idContador += 1;
+
     // Se define un nuevo objeto contacto con los datos ingresados por el usuario como valores de los atributos.
     const nuevoContacto = {
         id: idContador,
