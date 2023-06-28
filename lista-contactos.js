@@ -1,6 +1,9 @@
+// Definiendo el ID contador
+let idContador = 1;
+
 // Definiendo la lista de contactos como un array con un contacto ingresado para cuestiones de testeo.
 const listaContactos = [{
-    id: 123456,
+    id: 1,
     nombre: "Erick",
     apellido: "Henríquez",
     telefono: "321-4567890",
@@ -11,11 +14,8 @@ const listaContactos = [{
 }];
 // Función para añadir un contacto a la lista de contactos.
 const añadirContacto = (nombreApellido, telefonoIngresado, ciudadIngresado, direccionIngresado) =>{
-    // Se han definido un rango minimo y máximo para generar el número del ID que es de 6 digitos
-    const idMin = 100000;
-    const idMax = 199999;
-    // Se genera un número aleatorio entre 100,000 y 199,999 para generar el ID
-    let idContador = Math.floor(Math.random() * (idMax - idMin) + idMin);
+    // Se le aumenta 1 al ID contador por que sa he ingresado un nuevo contacto.
+    idContador += 1;
     // Se separa el nombre y el apellido
     nombreApellido = nombreApellido.split(" ");
     let nombreIngresado = nombreApellido[0];
@@ -62,25 +62,38 @@ const borrarContacto = (contactoEliminar) =>{
     console.log(`No se ha encontrado el contacto "${nombreIngresado} ${apellidoIngresado}" en la lista de contactos.`);}
 
 // Función para actualizar un contacto.
-const actualizarContacto = (idIngresado, contactoActualizar, telefonoIngresado, ciudadIngresado, direccionIngresado) =>{
-    // Se separa el nombre y el apellido
-    contactoActualizar = contactoActualizar.split(" ");
-    let nombreIngresado = contactoActualizar[0];
-    let apellidoIngresado = contactoActualizar[1];
-    
+const actualizarContacto = (idIngresado, datoActualizar, respectivoDato) =>{
+    // Se itera sobre la lista de contactos
     for (const contacto of listaContactos){
         if(contacto.id == idIngresado) {
-            contacto.nombre = nombreIngresado;
-            contacto.apellido = apellidoIngresado;
-            contacto.telefono = telefonoIngresado;
-            contacto.ubicacion.ciudad = ciudadIngresado;
-            contacto.ubicacion.direccion = direccionIngresado;
-            console.log(`Se ha actualizado los datos del contacto "${nombreIngresado} ${apellidoIngresado}" en la lista de contactos.`);
+            // Se checkea si el dato a actualizar es un dato valido para la lista de contacto
+            switch (datoActualizar.toLowerCase()) {
+                case "nombre":
+                    contacto.nombre = respectivoDato;
+                    break;
+                case "apellido":
+                    contacto.apellido = respectivoDato;
+                    break;
+                case "telefono":
+                    contacto.telefono = respectivoDato;
+                    break;
+                case "ciudad":
+                    contacto.ubicacion.ciudad = respectivoDato;
+                    break;
+                case "dirección":
+                    contacto.ubicacion.direccion = respectivoDato;
+                    break;
+                default:
+                    console.log("El dato a actualizar no es valido, por favor ingrese uno de los siguientes:\n1. nombre\n2. apellido\n3. telefono\n4. ciudad\n5. dirección");
+                    return; // parar la función porque el dato a actualizar no es valido.
+            }
+            console.log(`Se ha actualizado los datos del contacto "${contacto.nombre} ${contacto.apellido}" en la lista de contactos.`);
             return; // parar la función porque ya se ha encontrado el contacto y se ha eliminado.
         }
     }
     console.log(`No se ha encontrado el contacto "${nombreIngresado} ${apellidoIngresado}" en la lista de contactos.`);
 }
+
 
 // Función para imprimir lista de contactos.
 const imprimirListaContactos = ()=>{
@@ -110,7 +123,9 @@ function main(){
     console.log('');
     imprimirListaContactos();
     console.log('');
-    actualizarContacto(123456, "Erick Henríquez", "301-6962090", "Medellín", "Calle 33a #78a-72");
+    actualizarContacto(1, "telefono", "301-6962090")
+    actualizarContacto(1, "dirección", "Calle 33a #78a-72")
+    actualizarContacto(1, "ciudad", "Medellín")
     console.log('');
     imprimirListaContactos();
 }
